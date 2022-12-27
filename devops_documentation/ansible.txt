@@ -1,0 +1,27 @@
+					@ANSIBLE@
+#É um utilitário (open source) que é utilizado para fazer a orquestração e gerenciamento de configuração de máquinas virtuais. Iac (Infraestrutura como código).
+#O objetivo dele é automatizar tarefas que geralmente são repetitivas para instalação e configuração de Vm´s.
+#Tem dois tipos de máquinas: Control node e managed hosts.
+
+#Control Machine: Instalação do Ansible.
+#Managed Host: Host inventory.
+#Host Inventory: Arquivo de texto (control node) com a lista de hosts/IP´s que serão gerenciados pelo Ansible.
+#Forma de comunicação: SSH.
+#Nenhum software precisa ser instalado no Managed Host.
+
+					Módulos:
+#Core Modules: Executam grande maioria das atividades de ADM do SO.
+#Custom Modules: Extender a funcionalidade criando componentes personalizados (Python).
+#Playbooks: Arquivo texto do tipo YAML com sintaxe pré-definidas para configurar módulos Ansibles.
+#Plugins: Extensão de funcionalidades (envio de mensagens, e-mails, etc.).
+#Ansible Galaxy: Site que disponibiliza um conjunto de roles (tarefas) desenvolvidas pela comunidade.
+
+					Requerimentos S.O:
+#Control node: DevOps (sysadmims) acessam (se for o caso) e inicializam operações através do Control Node.
+					Requerimentos Control Node:
+#Python (2.7 ou 3.5 ou superior)
+#RedHat, CentOS, Debian, MacOS, *Windows não é suportado.*
+#Managed Host: Log in, instalação de módulos e execução dos comandos remotamente.
+					Requerimentos Managed Host:
+SSH habilitado.
+Pythom 2.4 - superior.
