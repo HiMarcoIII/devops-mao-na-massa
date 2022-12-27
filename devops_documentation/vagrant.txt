@@ -78,3 +78,14 @@ vagrant ssh
 #Para acessar a máquina em um atalho direto por ssh.
 
 OBS.: O Vagrant configura automanticamente a liberação de porta ssh.
+
+					COMANDOS ADICIONAIS:
+
+vagrant plugin install vagrant-winnfsd
+#Para instalar suporte ao NFS no windows.
+
+vagrant plugin list
+#Para listar plugins instalados no Vagrant.
+
+
+

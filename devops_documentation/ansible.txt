@@ -25,3 +25,61 @@
 					Requerimentos Managed Host:
 SSH habilitado.
 Pythom 2.4 - superior.
+
+					*Criação de 3 servidores:* CURSO
+
+#Control-node
+#app01
+#db01
+#-Configuração de rede privada - todos os hosts.
+#-Configuração do hostname - todos os hosts.
+#-Configuração de forward port para aplicação 080 - app01.
+#-Configuração de forward port para db 3306 - app01.
+#Instalação do Ansible - Control-node.
+
+					Configuração do control node:
+#Cria a pasta ansible-lab e dentro dela as pastas das máquinas que são: app01, db01 e control-node.
+#Na pasta control-node:
+vagrant init
+#Para criar o arquivo de configuração Vagrantfile.
+					No Vagrantfile:
+config.vm.boc = "centos/7"
+#Para direcionar qual box utilizar
+
+config.vm.hostname = "control-node"
+#Para as aplicações se comunicarem de acordo seus nomes.
+
+config.vm.network "private_network", ip: "192.168.1.2"
+#Para dizer que será um rede privada e direcionar o ip da vm.
+
+#NFS (Network File System): É um sistema de arquivos remoto que se consegue de forma quase que instantanea gravar/sincronizar os dados
+
+config.vm.synced_folder ".", "/vagrant", type "nfs"
+# "." Diretório do sync (onde ficará os playbooks e arquivos associados ao Ansible.
+# "/vagrant" Diretório a ser montado remotamente.
+# type "nfs"
+
+LEMBRETE: É necessário ter o módulo vbguest instalado.
+
+config.vm.provision "shell", path: "provision.sh"
+#O Vagrantfile vai procurar o arquivo de configuração provision.sh para executar o que está lá.
+
+					No provision.sh:
+#/bin/sh
+#Para informar que utilizaremos o SH.
+
+sudo yum -y install epel-release
+#Para instalar o repositório yum que será crucial para que consigamos instalar o Ansible.
+
+echo "Inicio da isntalacao do Ansible"
+#Mensagem informando que estamos instalando o Ansible.
+
+sudo yum -y install ansible
+#Para instalar o Ansible.
+
+cat <<EOT >> /etc/hosts
+192.168.1.2 control-node
+192.168.1.3 app01
+192.168.1.4 db01
+EOT
+#Para informar ip´s das máquinas.
