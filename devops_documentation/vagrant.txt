@@ -1,0 +1,80 @@
+					@VAGRANT@
+#Ferramenta desenvolvida para criar e gerenciar máquinas virtuais.
+
+					BOX	
+#Imagem base de um sistema operacional.
+#Uma nova máquina é clonada a partir do primeiro download.
+#Mútiplas máquinas podem utilizar a mesma box
+
+					Pontos importantes:
+-Configurar o .gitignore para ignorar o diretório .vagrant;
+-O comando vagrant destroy apaga a machine, não a box;
+-Após alterar o script de provisionamento, executar o destroy.
+-Instalação dos módulos vbguest;
+-Forward de portas obrigatoriamente acima de 1024;
+-Toda alteração no VagrantFile executar: vagrant reload.
+Necessário baixar e instalar o vagrant antes de iniciar.
+Caso esteja no Windows utilizar para dar os comandos o PowerShell caso esteja no WIN10 ou o Terminal caso esteja no WIN11.
+
+					Comandos e suas funções:
+vagrant --version
+#Para saber a versão do vagrant.
+
+vagrant plugin install vagrant-vbguest --plugin-version 0.21
+#Para fazer downgrade e instalar um plugin.
+
+vagrant init
+#Para iniciar um arquivo de configuração simples (Vagrantfile).
+
+code . 
+#Para fazer alterações usando o visual studio code.
+#Após isso editar o arquivo chamado Vagrantfile que foi criado a partir do comando vagrant init.
+LEMBRETE:
+pwd 
+#para mostrar onde você está.
+
+					Criando e configurando a máquina:
+#No Vagrantfile faz as seguintes linhas.
+#Descrevendo linhas e funções.
+
+config.vm.box = "centos/7"
+#Serve para dizer qual a box o vagrant vai utilizar.
+
+config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+#Serve para dizer que suba o Apache na porta 80 e que o host abra a porta 8080.
+
+config.vm.provision "shell", path: "provision.sh"
+#O Vagrantfile vai procurar o arquivo de configuração provision.sh para executar o que está lá.
+#Este arquivo deve ser criado por você, assim como os comandos dados.
+
+Pelo studio code crie o provision.sh e nele adiciona as seguintes linhas:
+
+#!/usr/bin/env/ bash
+#Para dizer que é uma bash.
+
+echo "Installing Apache and setting it up..."
+#Esta dizendo para instalar o Apache.
+
+yum install -y httpd >/dev/null 2>&1
+#Serve para instalar o httpd, e o -y para não precisarmos dar o yes quando a ação estiver sendo realizada.
+
+cp -r /vagrant/html/* /var/www/html/
+#Para fazer uma cópia do arquivo para o diretório padrão do Apache que disponibiliza páginas http.
+
+service httpd start
+#Para subir o Apache.
+
+LEMBRETE:
+O provision.sh só roda na primeira vez que você starta a máquina.
+
+					Após a configuração do provision.sh:
+vagrant up
+#Para startar a máquina.
+
+vagrant status
+#Para saber o status da máquina.
+
+vagrant ssh
+#Para acessar a máquina em um atalho direto por ssh.
+
+OBS.: O Vagrant configura automanticamente a liberação de porta ssh.

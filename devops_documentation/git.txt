@@ -1,0 +1,39 @@
+				@GIT@
+
+#É um gerenciador de versão/mudanças/arquivos.
+#Subidas de novas versões chamamos de commit.
+#Pode voltar ao passado.
+
+				Comandos e suas funções:
+
+git init
+#Para criação de um novo repositório localmente.
+
+git status
+#Para saber se arquivos foram adicionados ou removidos.
+
+git add
+#Para adicionar arquivos no repositório.
+
+git commit
+#Para finalizar, dar o OK para dentro do repositório.
+
+#Agora do repositório local para o remoto (Sync)
+
+git add origin
+#Para adicionar uma origem de um repositório remoto.
+
+git push
+#Para subir o repositório.
+
+git pull
+#Para trazer para sua máquina local.
+
+git branch
+#Para fazer uma branch.
+
+git merge
+#Juntar os códigos numa branch só.
+
+LEMBRETE:
+É necessário criar um Token no GIT.
