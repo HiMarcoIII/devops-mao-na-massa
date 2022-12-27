@@ -35,5 +35,9 @@ git branch
 git merge
 #Juntar os códigos numa branch só.
 
+git clone link do repositório
+#Para clonar um repositório 
+
+
 LEMBRETE:
 É necessário criar um Token no GIT.
